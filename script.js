@@ -22,12 +22,54 @@ const handsResultElement = document.getElementById("hands-result");
 const roundResultElement = document.getElementById("round-result");
 const resetButton = document.getElementById("reset-button");
 const handButtons = document.querySelectorAll(".hand-button");
+const fireworksElement = document.getElementById("fireworks");
+const computerReactionElement = document.getElementById("computer-reaction");
 
 // ゲームの状態を保存する変数です。
 let playerWins = 0;
 let computerWins = 0;
 let roundNumber = 1;
 let gameFinished = false;
+
+function clearEffects() {
+  fireworksElement.replaceChildren();
+  computerReactionElement.classList.remove("is-laughing");
+  computerReactionElement.setAttribute("aria-hidden", "true");
+}
+
+function showFireworks() {
+  const colors = ["#ff3f34", "#ffd32a", "#05c46b", "#0fbcf9", "#a55eea"];
+
+  for (let burstIndex = 0; burstIndex < 5; burstIndex += 1) {
+    const firework = document.createElement("div");
+    firework.className = "firework";
+    firework.style.setProperty("--x", `${15 + Math.random() * 70}vw`);
+    firework.style.setProperty("--y", `${12 + Math.random() * 50}vh`);
+    firework.style.setProperty("--color", colors[burstIndex % colors.length]);
+
+    for (let sparkIndex = 0; sparkIndex < 16; sparkIndex += 1) {
+      const spark = document.createElement("span");
+      spark.className = "spark";
+      spark.style.setProperty("--angle", `${sparkIndex * 22.5}deg`);
+      spark.style.setProperty("--distance", `${60 + Math.random() * 70}px`);
+      spark.style.animationDelay = `${burstIndex * 140}ms`;
+      firework.appendChild(spark);
+    }
+
+    fireworksElement.appendChild(firework);
+  }
+
+  window.setTimeout(function () {
+    fireworksElement.replaceChildren();
+  }, 1800);
+}
+
+function showComputerLaugh() {
+  computerReactionElement.classList.remove("is-laughing");
+  void computerReactionElement.offsetWidth;
+  computerReactionElement.classList.add("is-laughing");
+  computerReactionElement.setAttribute("aria-hidden", "false");
+}
 
 function getComputerHand() {
   // Math.random() は 0以上1未満のランダムな数を作ります。
@@ -90,6 +132,8 @@ function playRound(playerHand) {
   const computerHand = getComputerHand();
   const result = judge(playerHand, computerHand);
 
+  clearEffects();
+
   handsResultElement.textContent = `あなた: ${playerHand} / コンピューター: ${computerHand}`;
 
   if (result === "draw") {
@@ -97,9 +141,11 @@ function playRound(playerHand) {
   } else if (result === "win") {
     playerWins += 1;
     roundResultElement.textContent = "あなたの勝ちです！";
+    showFireworks();
   } else {
     computerWins += 1;
     roundResultElement.textContent = "あなたの負けです！";
+    showComputerLaugh();
   }
 
   // あいこ以外で、まだ勝負が終わっていなければ次の回戦に進みます。
@@ -121,6 +167,8 @@ function resetGame() {
   computerWins = 0;
   roundNumber = 1;
   gameFinished = false;
+
+  clearEffects();
 
   updateScore();
   messageElement.textContent = "下のボタンから手を選んでください。";
