@@ -9,6 +9,50 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
   color: #273043;
   background: linear-gradient(135deg, #f7d794 0%, #f8a5c2 45%, #778beb 100%);
+  overflow-x: hidden;
+}
+
+
+.fireworks {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.firework {
+  --x: 50vw;
+  --y: 40vh;
+  --color: #ffd32a;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 8px;
+  height: 8px;
+}
+
+.spark {
+  --angle: 0deg;
+  --distance: 90px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color);
+  box-shadow: 0 0 10px var(--color);
+  animation: burst 900ms ease-out forwards;
+}
+
+@keyframes burst {
+  from {
+    transform: rotate(var(--angle)) translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(var(--angle)) translateX(var(--distance)) scale(0.15);
+    opacity: 0;
+  }
 }
 
 /* mainを画面中央に置くための設定です。 */
@@ -140,6 +184,41 @@ h1 {
   padding: 18px;
   border-radius: 20px;
   background: #f1f2f6;
+}
+
+
+.computer-reaction {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #c44569;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.computer-reaction.is-laughing {
+  display: flex;
+  animation: laugh 420ms ease-in-out 3;
+}
+
+.computer-face {
+  font-size: 3rem;
+}
+
+@keyframes laugh {
+  0%, 100% { transform: rotate(0) translateY(0); }
+  25% { transform: rotate(-7deg) translateY(-4px); }
+  75% { transform: rotate(7deg) translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spark,
+  .computer-reaction.is-laughing {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
 }
 
 .result-panel p {
