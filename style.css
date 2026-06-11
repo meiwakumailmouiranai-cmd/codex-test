@@ -1,0 +1,170 @@
+/* 画面全体の余白や背景色を決めます。 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+  color: #273043;
+  background: linear-gradient(135deg, #f7d794 0%, #f8a5c2 45%, #778beb 100%);
+}
+
+/* mainを画面中央に置くための設定です。 */
+.game {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(720px, 100%);
+  padding: 32px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 70px rgba(39, 48, 67, 0.25);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #786fa6;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+}
+
+.rule {
+  margin: 12px 0 24px;
+  font-size: 1.1rem;
+}
+
+.score-board {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 22px;
+}
+
+.score-box,
+.round-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 86px;
+  padding: 14px;
+  border-radius: 18px;
+  background: #f5f6fa;
+}
+
+.score-box {
+  flex-direction: column;
+}
+
+.score-label {
+  color: #596275;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.score-box strong,
+.round-box strong {
+  color: #e66767;
+  font-size: 2rem;
+}
+
+.message {
+  min-height: 1.7em;
+  margin: 0 0 18px;
+  font-weight: 700;
+}
+
+.hands {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.hand-button,
+.reset-button {
+  border: 0;
+  border-radius: 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.hand-button {
+  padding: 18px 12px;
+  color: white;
+  background: #546de5;
+  box-shadow: 0 10px 22px rgba(84, 109, 229, 0.28);
+}
+
+.hand-button:hover,
+.hand-button:focus,
+.reset-button:hover,
+.reset-button:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(39, 48, 67, 0.22);
+}
+
+.hand-button:disabled,
+.reset-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+  box-shadow: none;
+}
+
+.hand-icon {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 2.2rem;
+}
+
+.result-panel {
+  min-height: 112px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #f1f2f6;
+}
+
+.result-panel p {
+  margin: 6px 0;
+}
+
+#round-result {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.reset-button {
+  margin-top: 18px;
+  padding: 14px 24px;
+  color: white;
+  background: #e66767;
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 24px 18px;
+  }
+
+  .score-board,
+  .hands {
+    grid-template-columns: 1fr;
+  }
+}

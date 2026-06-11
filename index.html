@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じゃんけんゲーム（3回勝負）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game" aria-labelledby="game-title">
+    <section class="card">
+      <p class="eyebrow">Safariでそのまま遊べる</p>
+      <h1 id="game-title">じゃんけんゲーム</h1>
+      <p class="rule">3回勝負です。先に2勝したほうが勝ちです。</p>
+
+      <div class="score-board" aria-label="現在のスコア">
+        <div class="score-box">
+          <span class="score-label">あなた</span>
+          <strong id="player-score">0</strong>
+          <span>勝</span>
+        </div>
+        <div class="round-box">
+          <span>第</span>
+          <strong id="round-number">1</strong>
+          <span>回戦</span>
+        </div>
+        <div class="score-box">
+          <span class="score-label">コンピューター</span>
+          <strong id="computer-score">0</strong>
+          <span>勝</span>
+        </div>
+      </div>
+
+      <p id="message" class="message" aria-live="polite">
+        下のボタンから手を選んでください。
+      </p>
+
+      <div class="hands" aria-label="出す手を選ぶ">
+        <button class="hand-button" type="button" data-hand="グー">
+          <span class="hand-icon" aria-hidden="true">✊</span>
+          グー
+        </button>
+        <button class="hand-button" type="button" data-hand="チョキ">
+          <span class="hand-icon" aria-hidden="true">✌️</span>
+          チョキ
+        </button>
+        <button class="hand-button" type="button" data-hand="パー">
+          <span class="hand-icon" aria-hidden="true">✋</span>
+          パー
+        </button>
+      </div>
+
+      <div class="result-panel" aria-live="polite">
+        <p id="hands-result">あなたとコンピューターの手がここに表示されます。</p>
+        <p id="round-result">勝負を始めましょう！</p>
+      </div>
+
+      <button id="reset-button" class="reset-button" type="button" disabled>
+        もう一度遊ぶ
+      </button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
