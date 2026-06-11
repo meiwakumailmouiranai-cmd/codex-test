@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="fireworks" class="fireworks" aria-hidden="true"></div>
   <main class="game" aria-labelledby="game-title">
     <section class="card">
       <p class="eyebrow">Safariでそのまま遊べる</p>
@@ -51,6 +52,10 @@
       </div>
 
       <div class="result-panel" aria-live="polite">
+        <div id="computer-reaction" class="computer-reaction" aria-hidden="true">
+          <span class="computer-face">😄</span>
+          <span class="computer-laugh">CP「ハハハ！」</span>
+        </div>
         <p id="hands-result">あなたとコンピューターの手がここに表示されます。</p>
         <p id="round-result">勝負を始めましょう！</p>
       </div>
