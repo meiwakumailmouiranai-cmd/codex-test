@@ -51,13 +51,30 @@
         </button>
       </div>
 
-      <div class="result-panel" aria-live="polite">
+      <div id="battle-stage" class="battle-stage" aria-live="polite">
+        <p id="count-call" class="count-call" aria-hidden="true"></p>
+
+        <div class="versus-hands">
+          <div id="player-hand-card" class="hand-card">
+            <span class="battle-label">あなた</span>
+            <span id="player-hand-icon" class="battle-hand" aria-hidden="true">？</span>
+            <strong id="player-hand-name">手を選んでね</strong>
+          </div>
+          <span class="versus-mark" aria-hidden="true">VS</span>
+          <div id="computer-hand-card" class="hand-card">
+            <span class="battle-label">CP</span>
+            <span id="computer-hand-icon" class="battle-hand" aria-hidden="true">？</span>
+            <strong id="computer-hand-name">待機中</strong>
+          </div>
+        </div>
+
         <div id="computer-reaction" class="computer-reaction" aria-hidden="true">
           <span class="computer-face">😄</span>
           <span class="computer-laugh">CP「ハハハ！」</span>
         </div>
-        <p id="hands-result">あなたとコンピューターの手がここに表示されます。</p>
-        <p id="round-result">勝負を始めましょう！</p>
+        <p id="draw-reaction" class="draw-reaction" aria-hidden="true">もう一回！</p>
+        <p id="hands-result" class="visually-hidden">あなたとCPの手がここに表示されます。</p>
+        <p id="round-result" class="round-result">勝負を始めましょう！</p>
       </div>
 
       <button id="reset-button" class="reset-button" type="button" disabled>
